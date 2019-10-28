@@ -49,11 +49,6 @@ int main(int ac, char **av)
 		return EXIT_FAILURE;
 	}
 	// return gameOfLife();
-	std::cout << "Required a board of "
-		  << agof::Parameters::get().getWidth()
-		  << "x"
-		  << agof::Parameters::get().getHeight()
-		  << std::endl;
 	return EXIT_SUCCESS;
 }
 

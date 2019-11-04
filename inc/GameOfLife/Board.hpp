@@ -23,6 +23,10 @@
 
 #include <unordered_map>
 #include <vector>
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <ctime>
 
 namespace agof {
 
@@ -32,6 +36,7 @@ namespace agof {
 		enum class State {
 			Dead,
 			Alive,
+			ToBeBorn,
 			OutOfBound
 		};
 
@@ -39,11 +44,13 @@ namespace agof {
 		Board(unsigned int width, unsigned int height);
 
 		State at(int x, int y);
-
+		void dumpCurrent();
+		void next();
 	private:
 		void generateInitial();
-		void next();
-
+	  inline void asVLine(const unsigned int xCenter, const unsigned int yCenter);
+	  inline void asHLine(const unsigned int xCenter, const unsigned int yCenter);
+	  inline void asBox(const unsigned int xCenter, const unsigned int yCenter);
 		std::unordered_map<unsigned int, std::vector<State>> board; // TODO stores previous generation.
 	};
 }

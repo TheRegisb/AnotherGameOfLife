@@ -18,9 +18,11 @@
 // under the License.
 
 #include "GameOfLife/Parameters.hpp"
+#include "GameOfLife/Board.hpp"
 
 #include <iostream>
 #include <cstring>
+#include <cstdio>
 
 /* Compilation-unit constants. */
 
@@ -49,6 +51,14 @@ int main(int ac, char **av)
 		return EXIT_FAILURE;
 	}
 	// return gameOfLife();
+	agof::Board board;
+
+	
+	board.dumpCurrent();
+	while (std::getchar() != 'q') {
+	  board.next();
+	  board.dumpCurrent();
+	}
 	return EXIT_SUCCESS;
 }
 

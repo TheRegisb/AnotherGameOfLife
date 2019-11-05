@@ -23,6 +23,8 @@
 #include <iostream>
 #include <cstring>
 #include <cstdio>
+#include <conio.h>
+#include <windows.h>
 
 /* Compilation-unit constants. */
 
@@ -39,6 +41,8 @@ static int optionsHandle(char **av);
 static void displayHelp();
 static void displayAbout();
 
+int gameOfLifeNox();
+
 int main(int ac, char **av)
 {
 	try {
@@ -50,16 +54,12 @@ int main(int ac, char **av)
 		std::cout << av[0] << ": Invalid option: " << exp.what() << std::endl;
 		return EXIT_FAILURE;
 	}
-	// return gameOfLife();
-	agof::Board board;
-
-	
-	board.dumpCurrent();
-	while (std::getchar() != 'q') {
-	  board.next();
-	  board.dumpCurrent();
+	// TODO move to a GOF object
+	if (agof::Parameters::get().isNox()) {
+	  return gameOfLifeNox();
 	}
-	return EXIT_SUCCESS;
+	std::cout << "No X Window support for now. Please use --nox|-n option." << std::endl;
+	return EXIT_FAILURE;
 }
 
 static int optionsHandle(char **args)
@@ -77,6 +77,8 @@ static int optionsHandle(char **args)
 		} else if (strcmp(args[i], "--about") == 0 || strcmp(args[i], "-a") == 0) {
 			displayAbout();
 			return CODE_MESSAGE;
+		} else if (strcmp(args[i], "--nox") == 0 || strcmp(args[i], "-n") == 0) {
+			agof::Parameters::get().setNox(true);
 		} else {
 			std::cerr << args[0] << ": Unknown option: " << args[i] << std::endl;
 			return CODE_INVALID;
@@ -101,6 +103,9 @@ static void displayHelp()
 		  << std::endl
 		  << "  -w, --width Y" << std::endl
 		  << "\t\tWidth of the board, must be greater than zero, 50 by default"
+		  << std::endl
+		  << "  -n, --nox" << std::endl
+		  << "\t\tRender the game in stdout in a animated fashion"
 		  << std::endl;
 }
 

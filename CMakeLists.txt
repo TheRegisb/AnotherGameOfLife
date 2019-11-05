@@ -15,6 +15,7 @@ include_directories(${CMAKE_SOURCE_DIR}/inc)
 set (SOURCES
   src/main.cpp
   src/GameOfLife/Board.cpp
-  src/GameOfLife/Parameters.cpp)
+  src/GameOfLife/Parameters.cpp
+  src/GameOfLife/Graphics/NoxDisplay.cpp)
 
 add_executable(agof ${SOURCES})

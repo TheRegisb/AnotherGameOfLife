@@ -39,9 +39,11 @@ namespace agof {
 		void setWidth(unsigned int width);
 		void setHeight(const char *str);
 		void setHeight(unsigned int height);
+		void setNox(bool nox);
 
 		unsigned int getWidth() const;
 		unsigned int getHeight() const;
+		bool isNox() const;
 
 	private:
 		Parameters();
@@ -52,5 +54,6 @@ namespace agof {
 
 		unsigned int width;
 		unsigned int height;
+		bool nox;
 	};
 }

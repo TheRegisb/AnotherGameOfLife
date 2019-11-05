@@ -19,7 +19,7 @@
 
 #include "GameOfLife/Parameters.hpp"
 
-agof::Parameters::Parameters(): width(DEFAULT_WIDTH), height(DEFAULT_HEIGHT)
+agof::Parameters::Parameters(): width(DEFAULT_WIDTH), height(DEFAULT_HEIGHT), nox(false)
 {
 
 }
@@ -76,4 +76,14 @@ unsigned int agof::Parameters::getWidth() const
 unsigned int agof::Parameters::getHeight() const
 {
 	return height;
+}
+
+void agof::Parameters::setNox(bool nox)
+{
+  this->nox = nox;
+}
+
+bool agof::Parameters::isNox() const
+{
+  return nox;
 }

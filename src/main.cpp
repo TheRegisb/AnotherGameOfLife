@@ -18,13 +18,11 @@
 // under the License.
 
 #include "GameOfLife/Parameters.hpp"
-#include "GameOfLife/Board.hpp"
+#include "GameOfLife/Graphics/Renderer.hpp"
 
 #include <iostream>
 #include <cstring>
 #include <cstdio>
-#include <conio.h>
-#include <windows.h>
 
 /* Compilation-unit constants. */
 
@@ -41,14 +39,11 @@ static int optionsHandle(char **av);
 static void displayHelp();
 static void displayAbout();
 
-// TODO proper header file
-int gameOfLifeNox();
-int gameOfLife();
-
 int main(int ac, char **av)
 {
 	try {
 		int optionsCode = optionsHandle(av);
+
 		if (optionsCode != CODE_CONTINUE) {
 			return optionsCode;
 		}
@@ -56,12 +51,10 @@ int main(int ac, char **av)
 		std::cout << av[0] << ": Invalid option: " << exp.what() << std::endl;
 		return EXIT_FAILURE;
 	}
-	// TODO move to a GOF object
-	if (agof::Parameters::get().isNox()) {
-	  return gameOfLifeNox();
-	}
-	return gameOfLife();
-	return EXIT_FAILURE;
+	agof::Board board;
+	agof::Graphics::Renderer renderer(board);
+
+	return renderer.display(agof::Parameters::get().isNox());
 }
 
 static int optionsHandle(char **args)

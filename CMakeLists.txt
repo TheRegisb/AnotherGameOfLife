@@ -16,8 +16,7 @@ set (SOURCES
   src/main.cpp
   src/GameOfLife/Board.cpp
   src/GameOfLife/Parameters.cpp
-  src/GameOfLife/Graphics/XDisplay.cpp
-  src/GameOfLife/Graphics/NoxDisplay.cpp)
+  src/GameOfLife/Graphics/Renderer.cpp)
 
 if (WIN32)
   include_directories(${CMAKE_SOURCE_DIR}/SFML-2.5.1_win32/include)

@@ -41,7 +41,9 @@ static int optionsHandle(char **av);
 static void displayHelp();
 static void displayAbout();
 
+// TODO proper header file
 int gameOfLifeNox();
+int gameOfLife();
 
 int main(int ac, char **av)
 {
@@ -58,7 +60,7 @@ int main(int ac, char **av)
 	if (agof::Parameters::get().isNox()) {
 	  return gameOfLifeNox();
 	}
-	std::cout << "No X Window support for now. Please use --nox|-n option." << std::endl;
+	return gameOfLife();
 	return EXIT_FAILURE;
 }
 

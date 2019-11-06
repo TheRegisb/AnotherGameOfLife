@@ -16,6 +16,20 @@ set (SOURCES
   src/main.cpp
   src/GameOfLife/Board.cpp
   src/GameOfLife/Parameters.cpp
+  src/GameOfLife/Graphics/XDisplay.cpp
   src/GameOfLife/Graphics/NoxDisplay.cpp)
 
+if (WIN32)
+  include_directories(${CMAKE_SOURCE_DIR}/SFML-2.5.1_win32/include)
+  link_directories(${CMAKE_SOURCE_DIR}/SFML-2.5.1_win32/lib)
+  add_custom_target(deploy ALL)
+  add_custom_command(TARGET deploy POST_BUILD
+		     COMMAND ${CMAKE_COMMAND} -E copy_directory
+			"${CMAKE_SOURCE_DIR}/SFML-2.5.1_win32/bin"
+			${CMAKE_BINARY_DIR}/Release)
+else()
+  find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
+endif()
+
 add_executable(agof ${SOURCES})
+target_link_libraries(agof sfml-graphics sfml-window sfml-system)

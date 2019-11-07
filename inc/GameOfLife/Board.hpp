@@ -1,4 +1,4 @@
-// Copyright 2018 RÃ©gis Berthelot
+// Copyright 2018 Régis Berthelot
 
 // Licensed to the Apache Software Foundation (ASF) under one
 // or more contributor license agreements.  See the NOTICE file

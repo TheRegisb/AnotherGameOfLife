@@ -128,7 +128,8 @@ void agof::Board::next()
       	(this->at(x - 1, y + 1) == agof::Board::State::Alive) +
       	(this->at(x + 0, y + 1) == agof::Board::State::Alive) +
       	(this->at(x + 1, y + 1) == agof::Board::State::Alive);
-      
+
+      // Check blindly a cell's neighboor. If the location is invalid (e.g. [-1][-1]), a Board::State::OutOfBound is returned.
       if (this->at(x, y) == agof::Board::State::Dead && livingNeighbor == 3) {
       	boardCopy[y][x] = agof::Board::State::Alive; // Dead cells surrounded by 3 living cells get born.
       } else if (this->at(x, y) == agof::Board::State::Alive

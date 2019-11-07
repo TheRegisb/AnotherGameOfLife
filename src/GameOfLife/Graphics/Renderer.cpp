@@ -43,8 +43,8 @@ int agof::Graphics::Renderer::display(bool nox)
 
 int agof::Graphics::Renderer::startX()
 {
-  sf::RenderWindow window(sf::VideoMode(agof::Parameters::get().getWidth() * CELL_OUTER_BOUND,
-					agof::Parameters::get().getHeight() * CELL_OUTER_BOUND),
+  sf::RenderWindow window(sf::VideoMode(board[0].size() * CELL_OUTER_BOUND,
+					board.size() * CELL_OUTER_BOUND),
 			  "Another Game of Life");
 
   window.setFramerateLimit(60);
@@ -81,13 +81,13 @@ int agof::Graphics::Renderer::displayX(sf::RenderWindow &window)
 
 void agof::Graphics::Renderer::renderGrid(sf::RenderWindow &window, sf::Color color)
 {
-    for (unsigned int i = 1; i != agof::Parameters::get().getWidth(); i++) {
+    for (unsigned int i = 1; i != board[0].size(); i++) {
       sf::Vertex line[] = {sf::Vertex(sf::Vector2f((float) i * CELL_OUTER_BOUND, 0), color),
 			   sf::Vertex(sf::Vector2f((float) i * CELL_OUTER_BOUND, (float) window.getSize().y), color)};
     
       window.draw(line, 2, sf::Lines);
     }
-    for (unsigned int i = 1; i != agof::Parameters::get().getHeight(); i++) {
+    for (unsigned int i = 1; i != board.size(); i++) {
       sf::Vertex line[] = {sf::Vertex(sf::Vector2f(0, (float) i * CELL_OUTER_BOUND), color),
 			   sf::Vertex(sf::Vector2f((float) window.getSize().x, (float) i * CELL_OUTER_BOUND), color)};
     
@@ -97,8 +97,8 @@ void agof::Graphics::Renderer::renderGrid(sf::RenderWindow &window, sf::Color co
 
 void agof::Graphics::Renderer::renderBoard(sf::RenderWindow &window)
 {
-  for (std::size_t y = 0; y != agof::Parameters::get().getHeight(); y++) {
-    for (std::size_t x = 0; x != agof::Parameters::get().getWidth(); x++) {
+  for (std::size_t y = 0; y != board.size(); y++) {
+    for (std::size_t x = 0; x != board[0].size(); x++) {
       if (board.at((int) x, (int) y) == agof::Board::State::Alive) {
 	sf::CircleShape circle(CELL_OUTER_BOUND / 2);
 

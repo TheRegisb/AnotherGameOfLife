@@ -17,11 +17,15 @@
 // specific language governing permissions and limitations
 // under the License.
 
+/**
+ * @file Renderer.hpp
+ * Display and IO handler.
+ */
+
 #pragma once
 
 
 #include "GameOfLife/Board.hpp"
-#include "GameOfLife/Parameters.hpp"
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -43,11 +47,29 @@ const unsigned int CELL_OUTER_BOUND = 15; // in pixels;
 namespace agof {
   namespace Graphics {
 
+    /**
+     * Displays manager.
+     * Represent visually the Game of Life, 
+     * in a X or X-less environment.
+     */
     class Renderer {
     public:
+      /**
+       * Default constructor.
+       * Generates a new board.
+       */
       Renderer();
+      /**
+       * Parametric construtor.
+       * Uses and mutates the given board.
+       */
       Renderer(agof::Board &board);
 
+      /**
+       * Start the display and the IO handling.
+       * Starts either a graphic windows or a terminal-only
+       * representation of the Game of Life.
+       */
       int display(bool nox);
     private:
       int startX();

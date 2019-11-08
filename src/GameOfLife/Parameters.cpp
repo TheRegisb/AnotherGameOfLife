@@ -80,10 +80,10 @@ unsigned int agof::Parameters::getHeight() const
 
 void agof::Parameters::setNox(bool nox)
 {
-  this->nox = nox;
+	this->nox = nox;
 }
 
 bool agof::Parameters::isNox() const
 {
-  return nox;
+	return nox;
 }

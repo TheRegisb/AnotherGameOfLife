@@ -26,7 +26,13 @@
 #include <stdexcept>
 #include <cstdlib>
 
+/** 
+ * Default height of the board, in cells. 
+ */
 constexpr unsigned int DEFAULT_HEIGHT = 50;
+/**
+ * Default width of the board, in cells.
+ */
 constexpr unsigned int DEFAULT_WIDTH = 50;
 
 namespace agof {
@@ -68,7 +74,7 @@ namespace agof {
 	   * Set the height of the board to be used during the game
 	   * by converting an unsigned number litteral into its numeric value.
 	   * @param str Unsigned number litteral.
-	   * @thows invalid_argument on null, non-numeric or zero or lesser value.
+	   * @throws invalid_argument on null, non-numeric or zero or lesser value.
 	   */
 		void setHeight(const char *str);
 	  /**

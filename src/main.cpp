@@ -17,8 +17,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-#include "GameOfLife/Parameters.hpp"
-#include "GameOfLife/Graphics/Renderer.hpp"
+#include "GameOfLife/GameOfLife.hpp"
 
 #include <iostream>
 #include <cstring>

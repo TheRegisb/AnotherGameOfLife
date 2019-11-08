@@ -40,9 +40,16 @@
 #ifdef _WIN32
 #include <conio.h>
 #include <windows.h>
+#else
+#include <termios.h>
+#include <X11/Xlib.h>
+#include <stdlib.h>
 #endif
 
-const unsigned int CELL_OUTER_BOUND = 15; // in pixels;
+/**
+ * Maximum perimeter/radius of a cell shape.
+ */
+const unsigned int CELL_OUTER_BOUND = 15;
 
 namespace agof {
   namespace Graphics {

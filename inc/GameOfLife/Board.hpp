@@ -35,59 +35,78 @@
 
 namespace agof {
 
-  /**
-   * Automated cells container.
-   * Register cells on its intenal container and provoke
-   * their mutation (generation growth).
-   */
+	/**
+	 * Automated cells container.
+	 * Register cells on its intenal container and provoke
+	 * their mutation (generation growth).
+	 */
 	class Board {
 		
 	public:
-	  /**
-	   * States of the cells.
-	   * Represents the status of a cell on the board.
-	   */
+		/**
+		 * States of the cells.
+		 * Represents the status of a cell on the board.
+		 */
 		enum class State {
-				  Dead /** The cell is marked as dead. */,
-				  Alive /** The cell is marked as alive. */,
-				  OutOfBound /** The cell is NOT on the board. */
+			Dead /** The cell is marked as dead. */,
+			Alive /** The cell is marked as alive. */,
+			OutOfBound /** The cell is NOT on the board. */
 		};
 
-	  /**
-	   * Default constructor.
-	   * Create the board using the value of the Parameters singleton.
-	   * @see agof::Parameters
-	   */
-		Board();
-	  /**
-	   * Parametric constructor.
-	   * Create the board using the given dimensions.
-	   */
+		/**
+		 * Size of a board.
+		 */
+		struct Size {
+			/**
+			 * The width of the board.
+			 */
+			std::size_t X;
+			/**
+			 * The height of the board.
+			 */
+			std::size_t Y;
+		};
+
+		/**
+		 * Default constructor.
+		 * Create the board using the value of the Parameters singleton.
+		 * @see agof::Parameters
+		 */
+			Board();
+		/**
+		 * Parametric constructor.
+		 * Create the board using the given dimensions.
+		 */
 		Board(unsigned int width, unsigned int height);
 
-	  /**
-	   * Safely query one cell on the board.
-	   * Query the state of the cell on a given location on the board.
-	   * Invalid location, such as negative indexes, returns safely an OutOfBound value.
-	   * @return The state of the cell at the given location.
-	   * @see agof::Board::State
-	   */
+		/**
+		 * Get the size of the board.
+		 * @return The size {X, Y} of the current board.
+		 */
+		struct Size size();
+		/**
+		 * Safely query one cell on the board.
+		 * Query the state of the cell on a given location on the board.
+		 * Invalid location, such as negative indexes, returns safely an OutOfBound value.
+		 * @return The state of the cell at the given location.
+		 * @see agof::Board::State
+		 */
 		State at(int x, int y);
-	  /**
-	   * Display the content of the board into stdout.
-	   */
+		/**
+		 * Display the content of the board into stdout.
+		 */
 		void dumpCurrent();
-	  /**
-	   * Generate future generation.
-	   * Replace the current generation of cells by the next one using
-	   * the established rule of the Game of Life.
-	   */
+		/**
+		 * Generate future generation.
+		 * Replace the current generation of cells by the next one using
+		 * the established rule of the Game of Life.
+		 */
 		void next();
 	private:
 		void generateInitial();
-	  inline void asVLine(const unsigned int xCenter, const unsigned int yCenter);
-	  inline void asHLine(const unsigned int xCenter, const unsigned int yCenter);
-	  inline void asBox(const unsigned int xCenter, const unsigned int yCenter);
+		inline void asVLine(const unsigned int xCenter, const unsigned int yCenter);
+		inline void asHLine(const unsigned int xCenter, const unsigned int yCenter);
+		inline void asBox(const unsigned int xCenter, const unsigned int yCenter);
 		std::unordered_map<unsigned int, std::vector<State>> board;
 	};
 }
